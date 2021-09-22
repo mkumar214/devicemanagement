@@ -66,7 +66,7 @@ public class AuthController {
 	private JwtUtils jwtUtils;
 
 	@ApiOperation(value = "Authenticate user in the system and if user successful the return authentication token")
-	@PostMapping("/signin")
+	@PostMapping("/user/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 				loginRequest.getUsernameOrEmailOrPhonenumber(), loginRequest.getPassword()));
@@ -80,7 +80,7 @@ public class AuthController {
 		return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
 	}
 
-	@PostMapping("/signup")
+	@PostMapping("/user/signup")
 	public ResponseEntity<?> registerUser(@RequestBody SignUp signUp) {
 
 		if (userRepo.existsByEmailid(signUp.getEmail())) {
