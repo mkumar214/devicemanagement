@@ -1,5 +1,7 @@
 package com.khooju.auth.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,6 +20,8 @@ import com.khooju.auth.repository.UserRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 	
+	Logger log = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
+	
 	@Autowired
 	private UserRepository userRepo;
 
@@ -26,6 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		log.debug("{} is serching in the db",username);
 		Users user = userRepo.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("Please check the username, phonenumber or email-id"));
 		return UserDetailsImpl.build(user);
 	}

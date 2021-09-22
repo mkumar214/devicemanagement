@@ -1,5 +1,7 @@
 package com.khooju.auth.service;
 
+import java.util.List;
+
 import com.khooju.auth.db.model.Roles;
 
 /**
@@ -14,5 +16,13 @@ public interface RolesServices {
 	 * @param roles
 	 * @return
 	 */
-	Roles create(Roles roles); 
+	Roles create(Roles roles);
+
+	/**
+	 * 
+	 * @return all the roles saved in the DB
+	 */
+	List<Roles> fetchAllRoles();
+
+	
 }

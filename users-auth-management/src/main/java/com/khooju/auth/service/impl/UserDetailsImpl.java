@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +20,8 @@ import com.khooju.auth.db.model.Users;
  */
 public class UserDetailsImpl implements UserDetails {
 
+	final static Logger  log = LoggerFactory.getLogger(UserDetailsImpl.class);
+	
 	private Long id;
 
 	private String username;
@@ -75,6 +79,7 @@ public class UserDetailsImpl implements UserDetails {
 		return true;
 	}
 	public static UserDetailsImpl build(Users user) {
+		log.debug("{} building user object",user);
 		List<GrantedAuthority> authorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getRolename()))
 				.collect(Collectors.toList());
 		
