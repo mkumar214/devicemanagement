@@ -16,6 +16,7 @@ import com.khooju.auth.service.impl.UserDetailsImpl;
 
 public class SpringSecurityAuditorAware implements AuditorAware<String> {
 
+	
 	@Override
 	public Optional<String> getCurrentAuditor() {
 		Authentication authentication =  SecurityContextHolder.getContext().getAuthentication();
