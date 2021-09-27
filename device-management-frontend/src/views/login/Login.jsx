@@ -7,6 +7,8 @@ import { useState } from 'react';
 import google from '../../assets/images/social-media/google.svg'
 import { useStore } from 'react-redux';
 
+
+
 const Login = props => {
 
     const classes = style();
@@ -19,7 +21,9 @@ const Login = props => {
     //This is for hold the scren during login and registration
     var [isProcessing, setIsProcessing] = useState(false);
 
-  
+  const handleSubmit= () =>{
+      console.log('click submit')
+  }
 
     return (<div className="bg-light min-vh-100 d-flex flex-row align-items-center">
         <Grid container className={classes.container}>
@@ -98,7 +102,7 @@ const Login = props => {
                                     variant="contained"
                                     color="primary"
                                     size="large"
-                                    onClick={}
+                                    onClick={handleSubmit}
                                 >
                                     Login
                                 </Button>)}
